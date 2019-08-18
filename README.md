@@ -4,13 +4,14 @@
 
 1. Install package.
    ```sh
-   composer require withaspark/LogAggregator
+   composer require withaspark/log-aggregator
    ```
-2. Define your hosts, logging groups, and log files.
+2. Define your configuration of hosts, logging groups, and log files.
    ```sh
-   cp config.php.example config.php
+   cp config.example.json config.json
    ```
    Then edit the entries.
+3. Setup ssh public keys.
 
 ## Usage
 
@@ -41,7 +42,7 @@ For example,
 #### To tail logs
 
 ```sh
-path/to/tail "<search regex>"
+path/to/tail
 ```
 
 For example,
@@ -49,4 +50,11 @@ For example,
 ./tail
 ```
 
-Send SIGINT `<ctrl>+c` to exit.
+Send SIGINT `<ctrl>`+`c` to exit.
+
+## Roadmap
+
+* Accept config file as commandline argument. This would allow separate config files for different scenarios and commands.
+* Config file validation to minimize unhelpful error messages.
+* Handle losses of connectivity to remote hosts.
+* Add default log groups that require only hosts, e.g., syslog, apache, nginx, etc.

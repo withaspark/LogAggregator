@@ -1,6 +1,6 @@
 {
-    "name": "withaspark/LogAggregator",
-    "description": "A script for aggregating remote logs and running search queries against them.",
+    "name": "withaspark/log-aggregator",
+    "description": "A simple utility for aggregating, searching, and tailing remote log files.",
     "type": "project",
     "license": "MIT",
     "authors": [
