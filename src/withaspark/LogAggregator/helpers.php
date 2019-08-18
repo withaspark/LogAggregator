@@ -50,7 +50,7 @@ if (! function_exists('withaspark\LogAggregator\pull')) {
     {
         list($hosts, $groups) = parse('config.php');
 
-        $output_dir = rtrim($output_dir ?: '/home/logging/logs', '/');
+        $output_dir = rtrim($output_dir, '/');
         if (! is_writable($output_dir)) {
             fprintf(STDERR, "\nERROR: Unable to write to output directory %s\n\nCreate or make writeable by current user.\n", $output_dir);
             exit(1);
@@ -79,16 +79,16 @@ if (! function_exists('withaspark\LogAggregator\pull')) {
                 echo sprintf(
                     'echo \'[%s%%] Fetching %s from %s ...\'',
                     str_pad(number_format(($count - 1) / $total * 100, 0), 3, ' ', STR_PAD_LEFT),
-                    $log,
-                    $host->host
+                    escapeshellarg($log),
+                    escapeshellarg($host->host)
                 ) . "\n";
                 echo sprintf(
-                    'scp -P %d "%s@%s:%s" "%s"',
+                    'scp -P %d %s@%s:%s %s',
                     $host->port,
-                    $host->user,
-                    $host->host,
-                    $log,
-                    $target
+                    escapeshellarg($host->user),
+                    escapeshellarg($host->host),
+                    escapeshellarg($log),
+                    escapeshellarg($target)
                 ) . "\n";
             }
         }
@@ -122,7 +122,7 @@ if (! function_exists('withaspark\LogAggregator\tail')) {
             $host = $hosts[$h];
 
             foreach ($logs as $log) {
-                echo sprintf('ssh -p %d "%s@%s" tail -n1 -f "%s" &', $host->port, $host->user, $host->host, $log) . "\n";
+                echo sprintf('ssh -p %d %s@%s tail -n1 -f %s &', $host->port, escapeshellarg($host->user), escapeshellarg($host->host), escapeshellarg($log)) . "\n";
             }
         }
     }
