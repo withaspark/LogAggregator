@@ -1,0 +1,21 @@
+#/usr/bin/env bash
+
+OLDIFS=$IFS
+IFS=$'\n'
+result=$(php -r "require_once(__DIR__ . '/vendor/autoload.php'); withaspark\LogAggregator\tail();")
+pids=""
+for command in $result; do
+    eval $command
+    pids="$pids $!"
+done
+IFS=$OLDIFS
+
+trap "kill -9 $pids; exit 0" SIGINT
+
+while [ 1 ]; do
+    sleep 10
+done
+
+exit 0
+
+# ps ax | egrep "ssh.*tail" | egrep -v "grep.*tail" | awk '{print "kill -9 "$1}' | source /dev/stdin

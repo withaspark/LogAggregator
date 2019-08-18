@@ -1,0 +1,24 @@
+{
+    "name": "withaspark/LogAggregator",
+    "description": "A script for aggregating remote logs and running search queries against them.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stephen Parker",
+            "email": "web@withaspark.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "files": [
+            "src/withaspark/LogAggregator/helpers.php"
+        ],
+        "psr-0": {
+            "withaspark\\LogAggregator": "src/"
+        },
+        "psr-4": {
+            "withaspark\\LogAggregator\\": "src/"
+        }
+    }
+}

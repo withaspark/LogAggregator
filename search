@@ -1,0 +1,7 @@
+#/usr/bin/env bash
+
+SEARCH="$1"
+
+egrep "$SEARCH" master.log | cut -d':' -f2- | less
+
+exit 0

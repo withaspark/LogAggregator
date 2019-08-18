@@ -1,0 +1,44 @@
+{
+    "hosts": [
+        {
+            "host": "host-1.example.com",
+            "port": 22,
+            "user": "someuser"
+        },
+        {
+            "host": "host-2.example.com",
+            "port": 22,
+            "user": "someuser"
+        }
+    ],
+    "groups": [
+        {
+            "name": "syslogs",
+            "logs": [
+                "/var/log/auth.log",
+                "/var/log/syslog"
+            ],
+            "hosts": "*"
+        },
+        {
+            "name": "apache",
+            "logs": [
+                "/var/log/apache2/access.log",
+                "/var/log/apache2/error.log"
+            ],
+            "hosts": [
+                "host-2.example.com"
+            ]
+        },
+        {
+            "name": "nginx",
+            "logs": [
+                "/var/log/nginx/access.log",
+                "/var/log/nginx/error.log"
+            ],
+            "hosts": [
+                "host-1.example.com"
+            ]
+        }
+    ]
+}
