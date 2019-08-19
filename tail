@@ -10,7 +10,7 @@ for command in $result; do
 done
 IFS=$OLDIFS
 
-trap "kill -9 $pids; exit 0" SIGINT
+trap "kill -9 $pids 2>/dev/null; exit 0" SIGINT
 
 while [ 1 ]; do
     sleep 10
