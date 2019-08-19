@@ -1,0 +1,5 @@
+#/usr/bin/env bash
+
+php -r "require_once(__DIR__ . '/vendor/autoload.php'); withaspark\LogAggregator\analyze();"
+
+exit 0
